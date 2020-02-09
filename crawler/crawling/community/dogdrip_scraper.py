@@ -33,31 +33,31 @@ class EndPageException(Exception):
     pass
 
 
-class DogdripComment:
-    """
-    Attributes
-    ---------
-    nickname : str
-        a nickname of the user
-    content : str
-        a content of the comment
-    like_votes : str
-        a number of the like votes
-    date_str : Date
-        a date text of the comment
-    date : Date
-        a regdate of the post
-    """
+# class DogdripComment:
+#     """
+#     Attributes
+#     ---------
+#     nickname : str
+#         a nickname of the user
+#     content : str
+#         a content of the comment
+#     like_votes : str
+#         a number of the like votes
+#     date_str : Date
+#         a date text of the comment
+#     date : Date
+#         a regdate of the post
+#     """
 
-    def __init__(self, nickname, content, like_votes, date_str):
-        self.nickname = nickname
-        self.content = content
-        self.like_votes = int(like_votes)
-        self.date_str = date_str
-        self.date = date_str_to_date(date_str)
+#     def __init__(self, nickname, content, like_votes, date_str):
+#         self.nickname = nickname
+#         self.content = content
+#         self.like_votes = int(like_votes)
+#         self.date_str = date_str
+#         self.date = date_str_to_date(date_str)
 
-    def __str__(self):
-        return "nickname:{}\ncontent:{}\nlike_votes:{}\ndate_str:{}\ndate:{}\n".format(self.nickname, self.content, self.like_votes, self.date_str, self.date)
+#     def __str__(self):
+#         return "nickname:{}\ncontent:{}\nlike_votes:{}\ndate_str:{}\ndate:{}\n".format(self.nickname, self.content, self.like_votes, self.date_str, self.date)
 
 
 class DogdripPost:
@@ -150,8 +150,16 @@ class DogdripPost:
                 date_str = comment_div.find(
                     "div", {"class": "ed flex flex-right"}).find("span").text.strip()
 
-                comments.append(DogdripComment(
-                    nickname=nickname, content=content, like_votes=like_votes, date_str=date_str))
+                # DogdripComment has been removed.
+                # comments.append(DogdripComment(
+                #     nickname=nickname, content=content, like_votes=like_votes, date_str=date_str))
+
+                comments.append({
+                    "nickname": nickname,
+                    "content": content,
+                    "like_votes": int(like_votes),
+                    "date": date_str_to_date(date_str)
+                })
 
         return comments
 

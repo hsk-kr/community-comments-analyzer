@@ -45,4 +45,4 @@ def test_dogdrip_scraper_comments():
     comment = comments[0]
 
     # check a structure of the comment
-    assert comment.nickname and comment.like_votes and comment.date_str and comment.date
+    assert comment.nickname and comment.like_votes >= 0 and comment.date_str and comment.date
