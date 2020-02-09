@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  esdb:
+    image: elasticsearch:7.5.2
+    restart: always
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      discovery.type: single-node
