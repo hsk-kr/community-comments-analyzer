@@ -16,13 +16,42 @@ class DogdripESHelper(ESHelper):
     def __create_comments_index(self):
         settings = {
             "settings": {
-                "number_of_shards": 5,
-                "number_of_replicas": 1,
+                "number_of_shards": 1,
+                "number_of_replicas": 0,
                 "analysis": {
+                    "tokenizer": {
+                        "korean_tokenizer": {
+                            "type": "nori_tokenizer"
+                        }
+                    },
                     "analyzer": {
                         "korean": {
                             "type": "custom",
-                            "tokenizer": "nori_tokenizer"
+                            "tokenizer": "korean_tokenizer"
+                        }
+                    }
+                }
+            },
+            "mappings": {
+                DogdripESHelper.COMMENTS_TYPE_NAME: {
+                    "properties": {
+                        "comments": {
+                            "type": "nested",
+                            "properties": {
+                                "nickname": {
+                                    "type": "keyword"
+                                },
+                                "content": {
+                                    "type": "text",
+                                    "analyzer": "korean"
+                                },
+                                "like_votes": {
+                                    "type": "integer"
+                                },
+                                "date": {
+                                    "type": "date"
+                                }
+                            }
                         }
                     }
                 }
@@ -33,7 +62,7 @@ class DogdripESHelper(ESHelper):
             # Ignore "Index already Exist" error.
             # pylint: disable=unexpected-keyword-arg
             test = self._es.indices.create(
-                index=DogdripESHelper.INDEX_NAME, ignore=400, body=settings)
+                index=DogdripESHelper.INDEX_NAME, include_type_name=True, ignore=400, body=settings)
             print(test)
 
     @es_check_connection
