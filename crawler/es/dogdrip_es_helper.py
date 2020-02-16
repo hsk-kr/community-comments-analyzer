@@ -43,7 +43,8 @@ class DogdripESHelper(ESHelper):
                                 },
                                 "content": {
                                     "type": "text",
-                                    "analyzer": "korean"
+                                    "analyzer": "korean",
+                                    "fielddata": "true"
                                 },
                                 "like_votes": {
                                     "type": "integer"

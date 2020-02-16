@@ -1,29 +1,17 @@
 # Community Comments Analyzer
 
+Scrap comments from community web sites and then make a word cloud.
+
 ## Crawler
 
-### Prerequisites
+Scrap data from websites.
 
-- Docker
-- Python
+[Documentation](https://github.com/hsk-kr/community-comments-analyzer/tree/master/crawler)
 
-### how to start
+## API Server
 
-1. Create ES (project root directory)
-    ```
-    docker-compose up
-    ```
+API Server
 
-2. Install analysis-nori plug-in
-    ```
-    docker exec -it <container_id> /bin/bash
-    cd /usr/share/elasticsearch/bin/
-    ./elasticsearch-plugin install nalysis-nori
-    ```
+[Documentation](https://github.com/hsk-kr/community-comments-analyzer/tree/master/apiserver)
 
-3. Restart ES
-
-3. Start cralwer (crawler directory)
-    ```
-    python app.py
-    ```
+## Dashboard
