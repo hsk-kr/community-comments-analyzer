@@ -1,0 +1,17 @@
+.dashboard-container {
+  padding-top: 60px;
+  padding-left: 300px;
+  padding-right: 300px;
+
+  @media (max-width: 600px) {
+    padding: 30px;
+  }
+
+  .toolbar {
+    .selection-date-btn {
+      &:hover {
+        cursor: pointer !important;
+      }
+    }
+  }
+}

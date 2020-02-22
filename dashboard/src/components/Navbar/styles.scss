@@ -1,0 +1,46 @@
+.drawer-container {
+  min-height: 100vh;
+
+  .drawer-title-container {
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    text-align: center;
+
+    .drawer-title {
+      font-size: 1.5em;
+      font-family: 'Oxygen', sans-serif;
+      text-decoration: none;
+    }
+  }
+
+  .drawer-menu {
+    .drawer-subheader {
+      padding-left: 30px;
+
+      .drawer-subheader-label {
+        font-size: 0.7em;
+        color: #b2bec3;
+      }
+    }
+    .drawer-menu-item {
+      padding-left: 50px;
+      padding-right: 50px;
+
+      &:hover {
+        background-color: #b2bec3;
+      }
+
+      .drawer-menu-icon {
+        font-size: 1em;
+        margin-right: 15px;
+        padding-top: 1px;
+      }
+
+      .drawer-menu-label {
+        font-size: 0.8em;
+      }
+    }
+  }
+}
