@@ -74,7 +74,7 @@ const Navbar: FunctionComponent<{}> = () => {
           </Toolbar>
         </AppBar>
       </Hidden>
-      <Hidden smDown implementation="css">
+      <Hidden xsDown implementation="css">
         <Drawer variant="permanent" open>
           {drawer}
         </Drawer>
