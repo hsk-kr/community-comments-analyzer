@@ -2,6 +2,7 @@
   "extends": ["tslint:latest", "tslint-react"],
   "rulesDirectory": ["tslint-plugin-prettier"],
   "rules": {
-    "prettier": true
+    "prettier": true,
+    "no-console": false
   }
 }

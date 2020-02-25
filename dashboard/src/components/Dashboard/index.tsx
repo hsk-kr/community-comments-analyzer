@@ -38,9 +38,15 @@ const Dashboard: FunctionComponent<{}> = () => {
 
     console.log(data);
 
+    if (!commentsCountSvgRef.current) {
+      return;
+    }
     // svg size
-    const width: number = 500;
-    const height: number = 300;
+    const width: number = commentsCountSvgRef.current.offsetWidth; //svg.style('width');
+    const height: number = commentsCountSvgRef.current.offsetHeight; //svg.style('height');
+
+    console.log(`width:${width}`);
+    console.log(`height:${height}`);
 
     // yAxis
     const yScale: any = d3
@@ -132,12 +138,20 @@ const Dashboard: FunctionComponent<{}> = () => {
     const dateFormatter = d3.timeFormat('%y-%m-%d');
 
     function handleMouseMove(this: any, d: any, i: any) {
-      const v: any = xScale.invert(d3.mouse(this)[0]);
+      const v: any = xScale.invert(d3.mouse(this)[0] - 26);
 
       const bisectDate: any = d3.bisector((d: CountOfComments) => d.date).left;
-      const v2 = bisectDate(data, v) - 1;
-      console.log(d3.mouse(this)[0]);
-      console.log(v2);
+      let v2 = bisectDate(data, v) - 1;
+
+      if (v2 === undefined) {
+        return;
+      }
+
+      v2 = v2 - 1;
+
+      if (data[v2] === undefined) {
+        return;
+      }
 
       focus.attr(
         'transform',
@@ -150,7 +164,7 @@ const Dashboard: FunctionComponent<{}> = () => {
       //focus.attr('transform', `translate(${xScale})`);
     }
 
-    lineGroup
+    svg
       .on('mouseover', () => focus.style('display', 'block'))
       .on('mouseout', () => focus.style('display', 'none'))
       .on('mousemove', handleMouseMove);
